@@ -119,13 +119,21 @@ public class Lexer {
                 break;
         }
     }
-
-
+    
     public void identificador() {
-        while (esAlfaNumerico(mirar()))
+        while (esAlfaNumerico(mirar())) {
             avanzar();
+        }
         String texto = codigo.substring(inicio, actual);
+        tipoToken tipo;
+        try {
+            tipo = tipoToken.valueOf(texto.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            tipo = tipoToken.IDENTIFICADOR;
+        }
+        añadirToken(tipo);
     }
+
     public void numero(){
         while (esDigito(mirar()))
             avanzar();
