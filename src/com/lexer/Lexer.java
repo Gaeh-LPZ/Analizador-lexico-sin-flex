@@ -29,56 +29,56 @@ public class Lexer {
         switch (c) {
             // símbolos de un solo carácter
             case '(': 
-                addToken(tipoToken.PARENTESIS_IZQ);
+                añadirToken(tipoToken.PARENTESIS_IZQ);
                 break;
 
             case ')': 
-                addToken(tipoToken.PARENTESIS_DER);
+                añadirToken(tipoToken.PARENTESIS_DER);
                 break;
 
             case '{': 
-                addToken(tipoToken.LLAVE_IZQ);
+                añadirToken(tipoToken.LLAVE_IZQ);
                 break;
 
             case '}': 
-                addToken(tipoToken.LLAVE_DER);
+                añadirToken(tipoToken.LLAVE_DER);
                 break;
 
             case ',': 
-                addToken(tipoToken.COMA);
+                añadirToken(tipoToken.COMA);
                 break;
 
             case ';': 
-                addToken(tipoToken.PUNTO_Y_COMA);
+                añadirToken(tipoToken.PUNTO_Y_COMA);
                 break;
 
             case '+': 
-                addToken(tipoToken.SUMA);
+                añadirToken(tipoToken.SUMA);
                 break;
 
             case '-': 
-                addToken(tipoToken.RESTA);
+                añadirToken(tipoToken.RESTA);
                 break;
 
             case '*': 
-                addToken(tipoToken.MULTIPLICACION);
+                añadirToken(tipoToken.MULTIPLICACION);
                 break;
 
             // operadores que podrían ser de uno o dos caracteres
             case '!': 
-                addToken(match('=') ? tipoToken.DIFERENTE : tipoToken.DESCONOCIDO); // '!' solo no es válido
+                añadirToken(match('=') ? tipoToken.DIFERENTE : tipoToken.DESCONOCIDO); // '!' solo no es válido
                 break;
 
             case '=': 
-                addToken(match('=') ? tipoToken.IGUAL : tipoToken.ASIGNACION);
+                añadirToken(match('=') ? tipoToken.IGUAL : tipoToken.ASIGNACION);
                 break;
 
             case '<': 
-                addToken(match('=') ? tipoToken.MENOR_IGUAL : tipoToken.MENOR_QUE);
+                añadirToken(match('=') ? tipoToken.MENOR_IGUAL : tipoToken.MENOR_QUE);
                 break;
 
             case '>': 
-                addToken(match('=') ? tipoToken.MAYOR_IGUAL : tipoToken.MAYOR_QUE);
+                añadirToken(match('=') ? tipoToken.MAYOR_IGUAL : tipoToken.MAYOR_QUE);
                 break;
 
             // la división es especial porque puede iniciar un comentario
@@ -87,7 +87,7 @@ public class Lexer {
                     // es un comentario, entonces avanza hasta el final de la línea
                     while (mirar() != '\n' && !estaAlFinal()) avanzar();
                 } else {
-                    addToken(tipoToken.DIVISION);
+                    añadirToken(tipoToken.DIVISION);
                 }
                 break;
 
@@ -114,7 +114,7 @@ public class Lexer {
                     identificador();
                 } else {
                     // carácter no reconocido
-                    addToken(tipoToken.DESCONOCIDO);
+                    añadirToken(tipoToken.DESCONOCIDO);
                 }
                 break;
         }
