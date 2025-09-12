@@ -2,10 +2,45 @@ package com.lexer;
 
 public enum tipoToken {
     // Palabras reservadas
-    // Aqui pongan las palabras reservadas
-    
-    // Identificadores y tipos de datos 
-    INT, FLOAT, CADENA
+     
+    ELSE, SWITCH, CASE, WHILE, DO, FOR, BREAK, CONTINUE, RETURN, PUBLIC, PRIVATE, PROTECTED, DEFAULT, ABSTRACT, CLASS, EXTENDS, FINAL, MAIN, IMPLEMENTS,
+    INTERFACE, STATIC, CHAR, BOOLEAN, NEW, THIS, TRY, IMPORT, CATCH, PACKAGE, SUPER, NULL, TRUE, FALSE, IF, LONG, VOID, FINALLY, THROWS, ASSERT, BYTE,
+    DOUBLE, SHORT, ENUM, VOLATILE, INSTANCEOF, NATIVE, TRANSIENT, SYNCHRONIZED, THROW, INT, FLOAT, CADENA,
+
+    //identificadores y literales
+    IDENTIFICADOR,
+    LITERAL_ENTERA,
+    LITERAL_FLOTANTE,
+    LITERAL_CADENA,
+
+
+    //operadores 
+    SUMA,           // +
+    RESTA,          // -
+    MULTIPLICACION, // *
+    DIVISION,       // /
+    ASIGNACION,     // =
+    IGUAL,          // ==
+    DIFERENTE,      // !=
+    MENOR_QUE,      // <
+    MAYOR_QUE,      // >
+    MENOR_IGUAL,    // <=
+    MAYOR_IGUAL,    // >=
+
+    // Símbolos y Delimitadores
+    PARENTESIS_IZQ, // (
+    PARENTESIS_DER, // )
+    LLAVE_IZQ,      // {
+    LLAVE_DER,      // }
+    PUNTO_Y_COMA,   // ;
+    COMA,           // ,
+
 
     //yobaniwis agrega EOF "end of file" y todos los que dan error en lexer.java y estan en MAYUSCULAS 
+
+    // Token especial para el fin del archivo
+    EOF, // End Of File
+
+    // Token para elementos desconocidos
+    DESCONOCIDO
 }
