@@ -1,0 +1,11 @@
+public class Hola {
+    public static void main(String[] args) {
+        int x = 10;
+        float y = 20.5f;
+        String mensaje = "Hola Mundo";
+        
+        if (x > 5) {
+            System.out.println(mensaje);
+        }
+    }
+}
