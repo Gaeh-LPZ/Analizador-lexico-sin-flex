@@ -28,12 +28,15 @@ public enum tipoToken {
     MAYOR_IGUAL,    // >=
 
     // Símbolos y Delimitadores
+    CORCHETE_IZQ,   // [
+    CORCHETE_DER,   // ]
     PARENTESIS_IZQ, // (
     PARENTESIS_DER, // )
     LLAVE_IZQ,      // {
     LLAVE_DER,      // }
     PUNTO_Y_COMA,   // ;
     COMA,           // ,
+    PUNTO,          // .
 
 
     //yobaniwis agrega EOF "end of file" y todos los que dan error en lexer.java y estan en MAYUSCULAS 

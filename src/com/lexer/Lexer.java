@@ -28,6 +28,15 @@ public class Lexer {
         char c = avanzar();
         switch (c) {
             // símbolos de un solo carácter
+            case '.':
+                añadirToken(tipoToken.PUNTO);
+            
+            case '[':
+                añadirToken(tipoToken.CORCHETE_IZQ);
+
+            case ']':
+                añadirToken(tipoToken.CORCHETE_DER);
+
             case '(': 
                 añadirToken(tipoToken.PARENTESIS_IZQ);
                 break;
