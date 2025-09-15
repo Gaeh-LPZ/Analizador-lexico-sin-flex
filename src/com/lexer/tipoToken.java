@@ -37,7 +37,7 @@ public enum tipoToken {
     PUNTO_Y_COMA,   // ;
     COMA,           // ,
     PUNTO,          // .
-
+    DOS_PUNTOS,     // :
 
     //yobaniwis agrega EOF "end of file" y todos los que dan error en lexer.java y estan en MAYUSCULAS 
 

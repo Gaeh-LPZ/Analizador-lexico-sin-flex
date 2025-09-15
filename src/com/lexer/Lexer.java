@@ -59,6 +59,9 @@ public class Lexer {
             case ',': 
                 añadirToken(tipoToken.COMA);
                 break;
+            case ':':
+                añadirToken(tipoToken.DOS_PUNTOS);
+                break;
 
             case ';': 
                 añadirToken(tipoToken.PUNTO_Y_COMA);
