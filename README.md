@@ -1,3 +1,11 @@
+> [!IMPORTANT]
+> Ya implemente la interfaz, pero para **compilar y ejecutar** el proyecto deben usar los siguientes comandos desde la raíz del repositorio:
+> ```bash
+> javac -cp "src/com/lib/flatlaf-3.5.jar;src" src/com/Analizador/Analizador.java -d bin
+> java  -cp "bin;src/com/lib/flatlaf-3.5.jar" com.Analizador.Analizador
+> ```
+                                       
+
 ## Getting Started
 
 Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
