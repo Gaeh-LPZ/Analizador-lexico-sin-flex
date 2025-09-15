@@ -30,12 +30,15 @@ public class Lexer {
             // símbolos de un solo carácter
             case '.':
                 añadirToken(tipoToken.PUNTO);
+                break;
             
             case '[':
                 añadirToken(tipoToken.CORCHETE_IZQ);
+                break;
 
             case ']':
                 añadirToken(tipoToken.CORCHETE_DER);
+                break;
 
             case '(': 
                 añadirToken(tipoToken.PARENTESIS_IZQ);
