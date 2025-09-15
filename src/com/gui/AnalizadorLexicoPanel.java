@@ -89,6 +89,11 @@ public class AnalizadorLexicoPanel extends JPanel {
                 if (t.tipo == tipoToken.DESCONOCIDO) {
                     listaErrores.add(new Object[]{ t.linea, "Token desconocido: " + t.lexema });
                 }
+
+               if (t.tipo == tipoToken.ERROR_DE_CADENA) {
+                    listaErrores.add(new Object[]{ t.linea, "error de cadena: " + t.lexema });
+                }
+    
             }
 
             // 4. Mostrar resultados

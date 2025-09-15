@@ -191,6 +191,8 @@ public class Lexer {
             avanzar();
         }
         if(estaAlFinal()){
+            String textoErroneo = codigo.substring(inicio,actual);
+            tokens.add(new Token(tipoToken.ERROR_DE_CADENA, textoErroneo, linea, actual));
             System.out.println("Error en la linea " + linea + ": Cadena sin cerrar");
             return;
         }

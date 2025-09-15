@@ -48,5 +48,6 @@ public enum tipoToken {
     EOF, // End Of File
 
     // Token para elementos desconocidos
-    DESCONOCIDO
+    DESCONOCIDO,
+    ERROR_DE_CADENA
 }
