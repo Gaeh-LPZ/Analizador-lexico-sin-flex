@@ -79,6 +79,26 @@ public class Lexer {
                 añadirToken(tipoToken.MULTIPLICACION);
                 break;
 
+            case '%':
+                añadirToken(tipoToken.MOD);
+                break;
+
+            case '&':
+                if (match('&')){
+                    añadirToken(tipoToken.AND); //operador logico &&
+                } else {
+                    añadirToken(tipoToken.DESCONOCIDO); // & no es valido
+                }
+                break;
+
+            case '|':
+                if (match('|')){
+                    añadirToken(tipoToken.OR); // operador logico ||
+                } else {
+                    añadirToken(tipoToken.DESCONOCIDO);
+                }
+                break;
+
             // operadores que podrían ser de uno o dos caracteres
             case '!': 
                 añadirToken(match('=') ? tipoToken.DIFERENTE : tipoToken.DESCONOCIDO); // '!' solo no es válido
@@ -105,6 +125,7 @@ public class Lexer {
                     añadirToken(tipoToken.DIVISION);
                 }
                 break;
+                
 
             // ignorar espacios en blanco
             case ' ':

@@ -19,6 +19,7 @@ public enum tipoToken {
     RESTA,          // -
     MULTIPLICACION, // *
     DIVISION,       // /
+    MOD,            // %
     ASIGNACION,     // =
     IGUAL,          // ==
     DIFERENTE,      // !=
@@ -26,6 +27,8 @@ public enum tipoToken {
     MAYOR_QUE,      // >
     MENOR_IGUAL,    // <=
     MAYOR_IGUAL,    // >=
+    AND,            // &&
+    OR,             // ||
 
     // Símbolos y Delimitadores
     CORCHETE_IZQ,   // [
