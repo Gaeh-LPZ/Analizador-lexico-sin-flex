@@ -56,10 +56,10 @@ public class PruebaLexico {
         // Prueba de función
         System.out.println("Suma: " + suma(2.5f, 3.5f));
 
-        // Sección de errores léxicos intencionales
+        // Sección de error léxicos intencionales
 
         int @valor = 10;      // Símbolo no permitido @
-        String texto = "Hola; // Cadena sin cierre
+        
 
     }
 
