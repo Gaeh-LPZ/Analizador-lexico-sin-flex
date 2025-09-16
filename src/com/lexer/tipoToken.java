@@ -5,7 +5,7 @@ public enum tipoToken {
      
     ELSE, SWITCH, CASE, WHILE, DO, FOR, BREAK, CONTINUE, RETURN, PUBLIC, PRIVATE, PROTECTED, DEFAULT, ABSTRACT, CLASS, EXTENDS, FINAL, MAIN, IMPLEMENTS,
     INTERFACE, STATIC, CHAR, BOOLEAN, NEW, THIS, TRY, IMPORT, CATCH, PACKAGE, SUPER, NULL, TRUE, FALSE, IF, LONG, VOID, FINALLY, THROWS, ASSERT, BYTE,
-    DOUBLE, SHORT, ENUM, VOLATILE, INSTANCEOF, NATIVE, TRANSIENT, SYNCHRONIZED, THROW, INT, FLOAT, CADENA,
+    DOUBLE, SHORT, ENUM, VOLATILE, INSTANCEOF, NATIVE, TRANSIENT, SYNCHRONIZED, THROW, INT, FLOAT, CADENA, SYSTEM, OUT, PRINTLN,
 
     //identificadores y literales
     IDENTIFICADOR,
@@ -20,6 +20,7 @@ public enum tipoToken {
     RESTA,          // -
     MULTIPLICACION, // *
     DIVISION,       // /
+    MOD,            // %
     ASIGNACION,     // =
     IGUAL,          // ==
     DIFERENTE,      // !=
@@ -27,15 +28,20 @@ public enum tipoToken {
     MAYOR_QUE,      // >
     MENOR_IGUAL,    // <=
     MAYOR_IGUAL,    // >=
+    AND,            // &&
+    OR,             // ||
 
     // Símbolos y Delimitadores
+    CORCHETE_IZQ,   // [
+    CORCHETE_DER,   // ]
     PARENTESIS_IZQ, // (
     PARENTESIS_DER, // )
     LLAVE_IZQ,      // {
     LLAVE_DER,      // }
     PUNTO_Y_COMA,   // ;
     COMA,           // ,
-
+    PUNTO,          // .
+    DOS_PUNTOS,     // :
 
     //yobaniwis agrega EOF "end of file" y todos los que dan error en lexer.java y estan en MAYUSCULAS 
 
@@ -43,5 +49,6 @@ public enum tipoToken {
     EOF, // End Of File
 
     // Token para elementos desconocidos
-    DESCONOCIDO
+    DESCONOCIDO,
+    ERROR_DE_CADENA
 }

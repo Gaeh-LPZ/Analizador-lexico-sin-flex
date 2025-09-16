@@ -28,6 +28,18 @@ public class Lexer {
         char c = avanzar();
         switch (c) {
             // símbolos de un solo carácter
+            case '.':
+                añadirToken(tipoToken.PUNTO);
+                break;
+            
+            case '[':
+                añadirToken(tipoToken.CORCHETE_IZQ);
+                break;
+
+            case ']':
+                añadirToken(tipoToken.CORCHETE_DER);
+                break;
+
             case '(': 
                 añadirToken(tipoToken.PARENTESIS_IZQ);
                 break;
@@ -47,6 +59,9 @@ public class Lexer {
             case ',': 
                 añadirToken(tipoToken.COMA);
                 break;
+            case ':':
+                añadirToken(tipoToken.DOS_PUNTOS);
+                break;
 
             case ';': 
                 añadirToken(tipoToken.PUNTO_Y_COMA);
@@ -62,6 +77,26 @@ public class Lexer {
 
             case '*': 
                 añadirToken(tipoToken.MULTIPLICACION);
+                break;
+
+            case '%':
+                añadirToken(tipoToken.MOD);
+                break;
+
+            case '&':
+                if (match('&')){
+                    añadirToken(tipoToken.AND); //operador logico &&
+                } else {
+                    añadirToken(tipoToken.DESCONOCIDO); // & no es valido
+                }
+                break;
+
+            case '|':
+                if (match('|')){
+                    añadirToken(tipoToken.OR); // operador logico ||
+                } else {
+                    añadirToken(tipoToken.DESCONOCIDO);
+                }
                 break;
 
             // operadores que podrían ser de uno o dos caracteres
@@ -90,6 +125,7 @@ public class Lexer {
                     añadirToken(tipoToken.DIVISION);
                 }
                 break;
+                
 
             // ignorar espacios en blanco
             case ' ':
@@ -160,11 +196,10 @@ public class Lexer {
             }
             avanzar();
         }
-        if (estaAlFinal()) {
-            tokens.add(new Token(tipoToken.COMILLA,
-                                "\"",
-                                linea,
-                                inicio));
+        if(estaAlFinal()){
+            String textoErroneo = codigo.substring(inicio,actual);
+            tokens.add(new Token(tipoToken.ERROR_DE_CADENA, textoErroneo, linea, actual));
+            System.out.println("Error en la linea " + linea + ": Cadena sin cerrar");
             return;
         }
         // Si llegamos aquí es porque sí encontramos la comilla de cierre en la misma línea
