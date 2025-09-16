@@ -15,6 +15,7 @@ public enum tipoToken {
 
 
     //operadores 
+    COMILLA,         // "
     SUMA,           // +
     RESTA,          // -
     MULTIPLICACION, // *
