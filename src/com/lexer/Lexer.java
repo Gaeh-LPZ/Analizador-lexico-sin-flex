@@ -185,9 +185,15 @@ public class Lexer {
     }
 
     public void literal() {
-        while(mirar() != '"' && !estaAlFinal()){
-            if(mirar() == '\n')
-                linea++;
+        while (mirar() != '"' && !estaAlFinal()) {
+            // Si encontramos un salto de línea, salimos de inmediato
+            if (mirar() == '\n' || mirar() == '\r') {
+                tokens.add(new Token(tipoToken.COMILLA,
+                                    "\"",   // lexema = solo la comilla
+                                    linea,
+                                    inicio));
+                return; 
+            }
             avanzar();
         }
         if(estaAlFinal()){
@@ -196,10 +202,12 @@ public class Lexer {
             System.out.println("Error en la linea " + linea + ": Cadena sin cerrar");
             return;
         }
+        // Si llegamos aquí es porque sí encontramos la comilla de cierre en la misma línea
         avanzar();
         String valor = codigo.substring(inicio + 1, actual - 1);
         añadirToken(tipoToken.CADENA, valor);
     }
+
     private char avanzar(){
         return codigo.charAt(actual++);
     }
