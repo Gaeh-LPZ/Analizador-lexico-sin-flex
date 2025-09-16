@@ -59,7 +59,7 @@ public class PruebaLexico {
         // Sección de errores léxicos intencionales
 
         int @valor = 10;      // Símbolo no permitido @
-        float x = 1.2.3f;     // Número flotante mal formado
+        String texto = "Hola; // Cadena sin cierre
 
     }
 
