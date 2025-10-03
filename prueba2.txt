@@ -1,0 +1,21 @@
+public class PruebaLexico2 {
+    public static void main(String[] args) {
+        int numero = 10;
+        float promedio = 8.5f;
+        String mensaje = "Hola mundo";
+
+        if (numero > 5 && promedio >= 7.0) {
+            System.out.println(mensaje);
+        } else {
+            System.out.println("Condición no cumplida");
+        }
+
+        for (int i = 0; i < numero; i++) {
+            System.out.println(i);
+        }
+
+        // Comentario de línea
+        /* Comentario de bloque */
+        float sueldo$ = 1000.0;
+    }
+}
