@@ -38,6 +38,7 @@ public class AnalizadorLexicoPanel extends JPanel {
         // Abrir archivo y mostrar en área de texto
         btnOpen.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser();
+            chooser.setCurrentDirectory(new File(System.getProperty("user.dir"))); // <- aquí
             chooser.setFileFilter(new FileNameExtensionFilter(
                     "Archivos Java o Texto", "java", "txt"));
 

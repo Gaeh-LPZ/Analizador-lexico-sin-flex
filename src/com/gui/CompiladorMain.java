@@ -1,4 +1,5 @@
 package com.gui;
+
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,8 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-//import gui.AnalizadorLexicoPanel;
 
+// NEW: si CompiladorMain estuviera en otro paquete, descomenta la siguiente línea
+// import com.gui.PrimerosSiguientesPanel;
 
 public class CompiladorMain extends JFrame {
     private DataProvider dataProvider;
@@ -91,7 +93,7 @@ public class CompiladorMain extends JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
                 closeBtn.setOpaque(true);
-                closeBtn.setBackground(new Color(220, 70, 70)); 
+                closeBtn.setBackground(new Color(220, 70, 70));
                 closeBtn.setForeground(Color.WHITE);
             }
 
@@ -125,6 +127,11 @@ public class CompiladorMain extends JFrame {
                 case "analizador_lexico":
                     openAnalyzerTab("Analizador Léxico", new AnalizadorLexicoPanel());
                     break;
+
+                case "primeros_siguientes":
+                    openAnalyzerTab("Algoritmo primeros y siguientes", new PrimerosSiguientesPanel());
+                    break;
+
                 default:
                     String content = dataProvider.getAlgorithmDescription(cmd);
                     if (content == null) content = "(sin contenido)";
@@ -155,7 +162,7 @@ public class CompiladorMain extends JFrame {
 
 class ReusableMenuBar extends JMenuBar {
     public ReusableMenuBar(DataProvider provider, ActionListener handler) {
-        JMenu archivo = new JMenu("Archivo");
+        JMenu archivo = new JMenu("Salir");
         JMenuItem exit = new JMenuItem("Salir");
         exit.setActionCommand("exit");
         exit.addActionListener(handler);
@@ -180,7 +187,13 @@ class ReusableMenuBar extends JMenuBar {
         add(lex);
 
         JMenu sint = new JMenu("Analizador sintáctico");
-        JMenuItem parser = new JMenuItem("Analizador sintáctico (placeholder)");
+        
+        JMenuItem firstFollow = new JMenuItem("Algoritmo primeros y siguientes");
+        firstFollow.setActionCommand("primeros_siguientes");
+        firstFollow.addActionListener(handler);
+        sint.add(firstFollow);
+
+        JMenuItem parser = new JMenuItem("Analizador sintáctico");
         parser.setActionCommand("analizador_sintactico");
         parser.addActionListener(handler);
         sint.add(parser);
@@ -214,7 +227,7 @@ class ImagePanel extends JPanel {
         File dir  = base.getParentFile();
         if (dir == null) return null;
 
-        final String prefix = base.getName(); 
+        final String prefix = base.getName();
         String[] validExts = ImageIO.getReaderFileSuffixes();
 
         File[] matches = dir.listFiles(f -> {
@@ -265,8 +278,6 @@ class ImagePanel extends JPanel {
     }
 }
 
-
-
 class CodeSnippetPanel extends JPanel {
     public CodeSnippetPanel(String code) {
         setLayout(new BorderLayout());
@@ -293,7 +304,7 @@ interface DataProvider {
 class DefaultDataProvider implements DataProvider {
     @Override
     public String getBannerImagePath() {
-        return "resources/compilador_banner"; 
+        return "resources/compilador_banner";
     }
 
     @Override
