@@ -1,5 +1,5 @@
 S T V V’
-+ * ; int num nint char float
++ * ; id int num nint char float
 S->T V ;
 V->id V’
 V’->* nint + V’
