@@ -3,7 +3,7 @@
 > ```bash
 > javac -cp "src/com/lib/flatlaf-3.5.jar;src" src/com/Analizador/Analizador.java -d bin
 > java  -cp "bin;src/com/lib/flatlaf-3.5.jar" com.Analizador.Analizador
-> ```
+> ```   
                                        
 
 ## Getting Started
