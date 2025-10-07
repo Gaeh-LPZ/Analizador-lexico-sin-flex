@@ -1,5 +1,6 @@
 > [!IMPORTANT]
-> Ya implemente la interfaz, pero para **compilar y ejecutar** el proyecto deben usar los siguientes comandos desde la raíz del repositorio:
+> El algoritomo de primeros y siguientes se encuentra dentro de la pestaña de analizaodr sintactico.
+> El proyecto se compila y ejecuta igual
 > ```bash
 > javac -cp "src/com/lib/flatlaf-3.5.jar;src" src/com/Analizador/Analizador.java -d bin
 > java  -cp "bin;src/com/lib/flatlaf-3.5.jar" com.Analizador.Analizador
