@@ -71,6 +71,7 @@ public class coleccionCanonica {
         // Crear el item inicial S' -> •S
         List<String> produccionInicial = new ArrayList<>();
         produccionInicial.add(simboloInicial);
+        produccionInicial.add("$"); 
         Item itemInicial = new Item(produccionInicial, "S'", 0);
         
         // C = {CERRADURA({S' -> •S})}
