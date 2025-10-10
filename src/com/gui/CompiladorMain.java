@@ -13,6 +13,7 @@ import java.io.IOException;
 
 // NEW: si CompiladorMain estuviera en otro paquete, descomenta la siguiente línea
 // import com.gui.PrimerosSiguientesPanel;
+// import com.gui.ColeccionCanonicaPanel; // <- descomenta si está en otro paquete
 
 public class CompiladorMain extends JFrame {
     private DataProvider dataProvider;
@@ -132,6 +133,10 @@ public class CompiladorMain extends JFrame {
                     openAnalyzerTab("Algoritmo primeros y siguientes", new PrimerosSiguientesPanel());
                     break;
 
+                case "coleccion_canonica": // <<< NUEVO
+                    openAnalyzerTab("Algoritmo Colección Canónica", new ColeccionCanonicaPanel());
+                    break;
+
                 default:
                     String content = dataProvider.getAlgorithmDescription(cmd);
                     if (content == null) content = "(sin contenido)";
@@ -192,6 +197,12 @@ class ReusableMenuBar extends JMenuBar {
         firstFollow.setActionCommand("primeros_siguientes");
         firstFollow.addActionListener(handler);
         sint.add(firstFollow);
+
+        // <<< NUEVO: opción de Colección Canónica
+        JMenuItem coleccionCanonica = new JMenuItem("Algoritmo Colección Canónica");
+        coleccionCanonica.setActionCommand("coleccion_canonica");
+        coleccionCanonica.addActionListener(handler);
+        sint.add(coleccionCanonica);
 
         JMenuItem parser = new JMenuItem("Analizador sintáctico");
         parser.setActionCommand("analizador_sintactico");
