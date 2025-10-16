@@ -70,7 +70,26 @@ public class AnalizadorLexicoPanel extends JPanel {
             List<Object[]> listaTokens = new ArrayList<>();
             for (Token t : tokens) {
                 if (t.tipo != tipoToken.IDENTIFICADOR && t.tipo != tipoToken.DESCONOCIDO) {
-                    listaTokens.add(new Object[]{t.linea, t.lexema, t.tipo});
+                    // Mostrar el símbolo real (lexema) en lugar del nombre ENUM para ciertos símbolos
+                    Object tokenMostrar;
+                    switch (t.tipo) {
+                        case PUNTO:
+                        case PUNTO_Y_COMA:
+                        case COMA:
+                        case DOS_PUNTOS:
+                        case CORCHETE_IZQ:
+                        case CORCHETE_DER:
+                        case PARENTESIS_IZQ:
+                        case PARENTESIS_DER:
+                        case LLAVE_IZQ:
+                        case LLAVE_DER:
+                            // Para estos símbolos, el lexema contiene el caracter real (por ejemplo "." o ",")
+                            tokenMostrar = t.lexema;
+                            break;
+                        default:
+                            tokenMostrar = t.tipo; // mantener el nombre del token para el resto
+                    }
+                    listaTokens.add(new Object[]{t.linea, t.lexema, tokenMostrar});
                 }
             }
 
