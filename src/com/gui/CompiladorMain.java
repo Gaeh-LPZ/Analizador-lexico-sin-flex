@@ -60,14 +60,10 @@ public class CompiladorMain extends JFrame {
 
         CodeSnippetPanel codePanel = new CodeSnippetPanel(
                 "public class HolaMundo {\r\n"
-                + 
-                "    public static void main(String[] args) {\r\n"
-                + 
-                "        System.out.println(\"¡Hola, Mundo!\");\r\n"
-                + 
-                "    }\r\n"
-                + 
-                "}"
+                + "    public static void main(String[] args) {\r\n"
+                + "        System.out.println(\"¡Hola, Mundo!\");\r\n"
+                + "    }\r\n"
+                + "}"
         );
         gbc.gridx = 0;
         gbc.weightx = 0.35;
@@ -155,6 +151,9 @@ public class CompiladorMain extends JFrame {
                     break;
                 case "tabla_lr0":
                     openAnalyzerTab("Tabla LR(0)", new TablaLR0Panel());
+                    break;
+                case "analizador_sintactico":
+                    openAnalyzerTab("Analizador Sintáctico LR", new AnalizadorLRPanel());
                     break;
 
                 default:
@@ -408,8 +407,6 @@ class DefaultDataProvider implements DataProvider {
                 return "Algoritmo de Construcción de Conjuntos:\n\nConvierte AFN a AFD usando e-closure y move.";
             case "analizador_lexico":
                 return "Analizador léxico (placeholder):\n\nEjecuta análisis léxico sobre texto de entrada.";
-            case "analizador_sintactico":
-                return "Analizador sintáctico (placeholder):\n\nImplementaremos parser y árbol sintáctico.";
             case "analizador_semantico":
                 return "Analizador semántico (placeholder):\n\nChequeos semánticos y reporte de errores.";
             default:
