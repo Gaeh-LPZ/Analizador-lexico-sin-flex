@@ -2,7 +2,7 @@ package com.coleccionCanonica;
 
 import java.util.*;
 
-/** Lógica de cerradura, ir_a y colección canónica (sin numerar el estado de aceptación). */
+/** Lógica de cerradura, ir_a y colección canónica*/
 public class CanonicalLR0 {
 
     // ---------- cerradura ----------
@@ -34,9 +34,8 @@ public class CanonicalLR0 {
         return closure(g, J);
     }
 
-    // ---------- colección canónica (NO añade estado por '$') ----------
+    // ---------- colección canónica----------
     public static List<Set<ItemLR0>> canonicalCollection(Grammar g) {
-        // I0 = cerradura({ [S'→•α] })  (α es la producción de inicio aumentada)
         Production startProd = g.byLeft.get(g.startPrime).get(0);
         Set<ItemLR0> I0 = closure(g, new LinkedHashSet<>(Collections.singleton(new ItemLR0(startProd, 0))));
 
@@ -48,14 +47,13 @@ public class CanonicalLR0 {
             changed = false;
             List<Set<ItemLR0>> snapshot = new ArrayList<>(C);
             for (Set<ItemLR0> I : snapshot) {
-                // símbolos candidatos tras punto
                 Set<String> symbols = new LinkedHashSet<>();
                 for (ItemLR0 it : I) {
                     String s = it.symbolAfterDot();
                     if (s != null) symbols.add(s);
                 }
                 for (String X : symbols) {
-                    if ("$".equals(X)) continue; // << no crear estado para aceptación
+                    if ("$".equals(X)) continue; 
                     Set<ItemLR0> J = goTo(g, I, X);
                     if (J.isEmpty()) continue;
                     boolean exists = false;
@@ -67,7 +65,6 @@ public class CanonicalLR0 {
         return C;
     }
 
-    // ---------- helpers de formateo (estilo del profe) ----------
     private static List<String> orderedSymbols(Grammar g, Set<ItemLR0> I) {
         LinkedHashSet<String> s = new LinkedHashSet<>();
         for (ItemLR0 it : I) {
@@ -87,11 +84,9 @@ public class CanonicalLR0 {
         return "{" + String.join("|", lines) + "}";
     }
 
-    /** Reporte textual como en el ejemplo del profesor. */
     public static String formatReport(Grammar g, List<Set<ItemLR0>> C) {
         StringBuilder out = new StringBuilder();
 
-        // Encabezado y I0
         out.append("cerradura({[").append(g.startPrime).append("→•").append("...]})\n");
         out.append("I0=").append(itemsAsSet(C.get(0))).append("\n\n");
 
@@ -107,7 +102,6 @@ public class CanonicalLR0 {
             for (String X : symbols) {
                 Set<ItemLR0> J = goTo(g, I, X);
 
-                // ¿Aceptación?
                 boolean isAccept = "$".equals(X);
                 out.append("Ir_a(I").append(i).append(", ").append(X).append(")=");
 
@@ -115,7 +109,6 @@ public class CanonicalLR0 {
                     out.append("Aceptación");
                 } else {
                     out.append("cerradura(").append(itemsAsSet(J)).append(")");
-                    // número de estado si existe
                     Integer j = idx.get(J);
                     if (j == null) {
                         for (int k = 0; k < C.size(); k++) if (C.get(k).equals(J)) { j = k; break; }

@@ -5,16 +5,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-/** Representa la gramática aumentada y utilidades de IO/tokenizado. */
 public class Grammar {
     public static final String EPS = "ε";
     private static final Set<String> EPS_FORMS = new HashSet<>(Arrays.asList("ε","eps","epsilon"));
 
-    public final List<String> N;                 // no terminales (orden declarados)
-    public final List<String> T;                 // terminales (orden declarados)
-    public final String startPrime;              // S'
-    public final Map<String, List<Production>> byLeft; // A -> producciones
-    public final List<Production> all;           // lista plana (por si se requiere)
+    public final List<String> N;                 
+    public final List<String> T;                 
+    public final String startPrime;              
+    public final Map<String, List<Production>> byLeft; 
+    public final List<Production> all;        
 
     public Grammar(List<String> n, List<String> t, String sp,
                    Map<String, List<Production>> map, List<Production> all) {
@@ -38,7 +37,6 @@ public class Grammar {
         List<String> N = new ArrayList<>(Arrays.asList(lines.get(0).split("\\s+")));
         List<String> T = new ArrayList<>(Arrays.asList(lines.get(1).split("\\s+")));
 
-        // vocab para tokenizar RHS sin espacios
         List<String> vocab = new ArrayList<>();
         vocab.addAll(N); vocab.addAll(T);
         vocab.sort((a,b) -> Integer.compare(b.length(), a.length()));

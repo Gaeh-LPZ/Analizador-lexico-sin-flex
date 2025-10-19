@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class ItemLR0 {
     public final Production p;
-    public final int dot; // 0..p.right.size()
+    public final int dot;
 
     public ItemLR0(Production p, int dot) { this.p = p; this.dot = dot; }
 

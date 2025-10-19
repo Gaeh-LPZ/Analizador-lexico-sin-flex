@@ -21,7 +21,6 @@ public class AnalizadorLexicoPanel extends JPanel {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // --- Panel superior ---
         JPanel topPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -35,7 +34,6 @@ public class AnalizadorLexicoPanel extends JPanel {
         JButton btnAnalyze = new JButton("Analizar");
         JButton btnClear  = new JButton("Limpiar");
 
-        // Abrir archivo y mostrar en área de texto
         btnOpen.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser();
             chooser.setCurrentDirectory(new File(System.getProperty("user.dir"))); // <- aquí
@@ -62,15 +60,12 @@ public class AnalizadorLexicoPanel extends JPanel {
         }
 
         try {
-            // 3. Ejecutar el lexer directamente sobre el texto
             Lexer lexer = new Lexer(code);
             List<Token> tokens = lexer.scanTokens();
 
-            // --- Tabla de tokens ---
             List<Object[]> listaTokens = new ArrayList<>();
             for (Token t : tokens) {
                 if (t.tipo != tipoToken.IDENTIFICADOR && t.tipo != tipoToken.DESCONOCIDO) {
-                    // Mostrar el símbolo real (lexema) en lugar del nombre ENUM para ciertos símbolos
                     Object tokenMostrar;
                     switch (t.tipo) {
                         case PUNTO:
@@ -83,11 +78,10 @@ public class AnalizadorLexicoPanel extends JPanel {
                         case PARENTESIS_DER:
                         case LLAVE_IZQ:
                         case LLAVE_DER:
-                            // Para estos símbolos, el lexema contiene el caracter real (por ejemplo "." o ",")
                             tokenMostrar = t.lexema;
                             break;
                         default:
-                            tokenMostrar = t.tipo; // mantener el nombre del token para el resto
+                            tokenMostrar = t.tipo;
                     }
                     listaTokens.add(new Object[]{t.linea, t.lexema, tokenMostrar});
                 }
@@ -132,13 +126,11 @@ public class AnalizadorLexicoPanel extends JPanel {
         }
         });
 
-        // Limpiar
         btnClear.addActionListener(e -> {
             filePathField.setText("");
             textArea.setText("");
         });
 
-        // Layout del topPanel
         gbc.gridx = 0; gbc.gridy = 0;
         topPanel.add(lblSelect, gbc);
         gbc.gridx = 1; gbc.weightx = 1.0;
@@ -158,7 +150,6 @@ public class AnalizadorLexicoPanel extends JPanel {
         add(new JScrollPane(textArea), BorderLayout.CENTER);
     }
 
-    /** Carga el contenido de un archivo en el JTextArea */
     private void loadFileContent(File file) {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             textArea.setText("");

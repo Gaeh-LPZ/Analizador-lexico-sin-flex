@@ -1,15 +1,15 @@
 package com.gui;
 
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
+import com.coleccionCanonica.CanonicalLR0;
+import com.coleccionCanonica.Grammar;
+import com.coleccionCanonica.ItemLR0;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.List;
 import java.util.Set;
-import com.coleccionCanonica.ItemLR0;
-import com.coleccionCanonica.Grammar;
-import com.coleccionCanonica.CanonicalLR0;    
+import javax.swing.*;
+import javax.swing.border.TitledBorder;    
 
 public class ColeccionCanonicaPanel extends JPanel {
 
@@ -26,7 +26,6 @@ public class ColeccionCanonicaPanel extends JPanel {
     public ColeccionCanonicaPanel() {
         setLayout(new BorderLayout(8,8));
 
-        // Top bar
         JPanel top = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(4,4,4,4);
@@ -48,7 +47,6 @@ public class ColeccionCanonicaPanel extends JPanel {
 
         add(top, BorderLayout.NORTH);
 
-        // Split center
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         txtOut.setEditable(false);
         txtOut.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
@@ -65,7 +63,6 @@ public class ColeccionCanonicaPanel extends JPanel {
         split.setResizeWeight(0.75);
         add(split, BorderLayout.CENTER);
 
-        // Actions
         btnOpen.addActionListener(this::onOpen);
         btnAnalyze.addActionListener(this::onAnalyze);
         btnClear.addActionListener(e -> {
@@ -79,7 +76,6 @@ public class ColeccionCanonicaPanel extends JPanel {
     private void onOpen(ActionEvent e) {
         JFileChooser ch = new JFileChooser();
 
-        // Abrir en directorio actual o último utilizado
         if (selectedFile != null && selectedFile.getParentFile() != null) {
             ch.setCurrentDirectory(selectedFile.getParentFile());
         } else {
@@ -118,7 +114,6 @@ public class ColeccionCanonicaPanel extends JPanel {
         }
     }
 
-    // Standalone runner (opcional)
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame f = new JFrame("Cálculo de la colección canónica");
