@@ -61,7 +61,7 @@ public class CompiladorMain extends JFrame {
         CodeSnippetPanel codePanel = new CodeSnippetPanel(
                 "public class HolaMundo {\r\n"
                 + "    public static void main(String[] args) {\r\n"
-                + "        System.out.println(\"¡Hola, Mundo!\");\r\n"
+                + "        System.out.println(\"hola mundo\");\r\n"
                 + "    }\r\n"
                 + "}"
         );

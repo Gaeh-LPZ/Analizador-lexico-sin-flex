@@ -1,0 +1,4 @@
+int x, y, z;
+float t;
+x := id * id + ( id );
+t := id * num + id * ( id + num );

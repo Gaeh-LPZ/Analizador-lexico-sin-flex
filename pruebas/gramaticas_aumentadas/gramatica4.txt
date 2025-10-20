@@ -1,0 +1,13 @@
+S D L T Stmts Stmt E Tm F S'
+id , ; int float := + * ( ) num
+
+S' -> S $
+S  -> D Stmts
+D  -> D T id L ; | T id L ;
+L  -> , id L | ε
+T  -> int | float
+Stmts -> Stmts Stmt | Stmt
+Stmt -> id := E ;
+E  -> E + Tm | Tm
+Tm -> Tm * F | F
+F  -> ( E ) | id | num
