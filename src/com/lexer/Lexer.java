@@ -29,91 +29,91 @@ public class Lexer {
         switch (c) {
             // símbolos de un solo carácter
             case '.':
-                añadirToken(tipoToken.PUNTO);
+                aniadirToken(tipoToken.PUNTO);
                 break;
             
             case '[':
-                añadirToken(tipoToken.CORCHETE_IZQ);
+                aniadirToken(tipoToken.CORCHETE_IZQ);
                 break;
 
             case ']':
-                añadirToken(tipoToken.CORCHETE_DER);
+                aniadirToken(tipoToken.CORCHETE_DER);
                 break;
 
             case '(': 
-                añadirToken(tipoToken.PARENTESIS_IZQ);
+                aniadirToken(tipoToken.PARENTESIS_IZQ);
                 break;
 
             case ')': 
-                añadirToken(tipoToken.PARENTESIS_DER);
+                aniadirToken(tipoToken.PARENTESIS_DER);
                 break;
 
             case '{': 
-                añadirToken(tipoToken.LLAVE_IZQ);
+                aniadirToken(tipoToken.LLAVE_IZQ);
                 break;
 
             case '}': 
-                añadirToken(tipoToken.LLAVE_DER);
+                aniadirToken(tipoToken.LLAVE_DER);
                 break;
 
             case ',': 
-                añadirToken(tipoToken.COMA);
+                aniadirToken(tipoToken.COMA);
                 break;
             case ':':
-                añadirToken(tipoToken.DOS_PUNTOS);
+                aniadirToken(tipoToken.DOS_PUNTOS);
                 break;
 
             case ';': 
-                añadirToken(tipoToken.PUNTO_Y_COMA);
+                aniadirToken(tipoToken.PUNTO_Y_COMA);
                 break;
 
             case '+': 
-                añadirToken(tipoToken.SUMA);
+                aniadirToken(tipoToken.SUMA);
                 break;
 
             case '-': 
-                añadirToken(tipoToken.RESTA);
+                aniadirToken(tipoToken.RESTA);
                 break;
 
             case '*': 
-                añadirToken(tipoToken.MULTIPLICACION);
+                aniadirToken(tipoToken.MULTIPLICACION);
                 break;
 
             case '%':
-                añadirToken(tipoToken.MOD);
+                aniadirToken(tipoToken.MOD);
                 break;
 
             case '&':
                 if (match('&')){
-                    añadirToken(tipoToken.AND); //operador logico &&
+                    aniadirToken(tipoToken.AND); //operador logico &&
                 } else {
-                    añadirToken(tipoToken.DESCONOCIDO); // & no es valido
+                    aniadirToken(tipoToken.DESCONOCIDO); // & no es valido
                 }
                 break;
 
             case '|':
                 if (match('|')){
-                    añadirToken(tipoToken.OR); // operador logico ||
+                    aniadirToken(tipoToken.OR); // operador logico ||
                 } else {
-                    añadirToken(tipoToken.DESCONOCIDO);
+                    aniadirToken(tipoToken.DESCONOCIDO);
                 }
                 break;
 
             // operadores que podrían ser de uno o dos caracteres
             case '!': 
-                añadirToken(match('=') ? tipoToken.DIFERENTE : tipoToken.DESCONOCIDO); // '!' solo no es válido
+                aniadirToken(match('=') ? tipoToken.DIFERENTE : tipoToken.DESCONOCIDO); // '!' solo no es válido
                 break;
 
             case '=': 
-                añadirToken(match('=') ? tipoToken.IGUAL : tipoToken.ASIGNACION);
+                aniadirToken(match('=') ? tipoToken.IGUAL : tipoToken.ASIGNACION);
                 break;
 
             case '<': 
-                añadirToken(match('=') ? tipoToken.MENOR_IGUAL : tipoToken.MENOR_QUE);
+                aniadirToken(match('=') ? tipoToken.MENOR_IGUAL : tipoToken.MENOR_QUE);
                 break;
 
             case '>': 
-                añadirToken(match('=') ? tipoToken.MAYOR_IGUAL : tipoToken.MAYOR_QUE);
+                aniadirToken(match('=') ? tipoToken.MAYOR_IGUAL : tipoToken.MAYOR_QUE);
                 break;
 
             // la división es especial porque puede iniciar un comentario
@@ -122,7 +122,7 @@ public class Lexer {
                     // es un comentario, entonces avanza hasta el final de la línea
                     while (mirar() != '\n' && !estaAlFinal()) avanzar();
                 } else {
-                    añadirToken(tipoToken.DIVISION);
+                    aniadirToken(tipoToken.DIVISION);
                 }
                 break;
                 
@@ -150,7 +150,7 @@ public class Lexer {
                     identificador();
                 } else {
                     // carácter no reconocido
-                    añadirToken(tipoToken.DESCONOCIDO);
+                    aniadirToken(tipoToken.DESCONOCIDO);
                 }
                 break;
         }
@@ -167,7 +167,7 @@ public class Lexer {
         } catch (IllegalArgumentException e) {
             tipo = tipoToken.IDENTIFICADOR;
         }
-        añadirToken(tipo);
+        aniadirToken(tipo);
     }
 
     public void numero(){
@@ -178,9 +178,9 @@ public class Lexer {
             avanzar(); // consumir '.'
             while (esDigito(mirar()))
                 avanzar();
-            añadirToken(tipoToken.FLOAT);
+            aniadirToken(tipoToken.FLOAT);
         } else {
-            añadirToken(tipoToken.INT);
+            aniadirToken(tipoToken.INT);
         }
     }
 
@@ -205,7 +205,7 @@ public class Lexer {
         // Si llegamos aquí es porque sí encontramos la comilla de cierre en la misma línea
         avanzar();
         String valor = codigo.substring(inicio + 1, actual - 1);
-        añadirToken(tipoToken.CADENA, valor);
+        aniadirToken(tipoToken.CADENA, valor);
     }
 
     private char avanzar(){
@@ -239,11 +239,11 @@ public class Lexer {
         return codigo.charAt(actual + 1);
     }
 
-    private void añadirToken(tipoToken tipo) {
-        añadirToken(tipo, null);
+    private void aniadirToken(tipoToken tipo) {
+        aniadirToken(tipo, null);
     }
 
-    private void añadirToken(tipoToken tipo, Object literal ){
+    private void aniadirToken(tipoToken tipo, Object literal ){
         String texto = codigo.substring(inicio, actual);
         // Si el codigo actual no es nulo, se usa ese para cadenas
         String lexema = (literal == null)  ? texto : literal.toString();
